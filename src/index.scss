@@ -1,0 +1,58 @@
+$primary: #F2F5EA;
+$secondary: #bd5858;
+$text: #2C363F;
+$hoverText: #5B8C5A;
+$fontFamily: 'Open Sans', sans-serif;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $fontFamily;
+  background-color: $primary;
+  color: $text; 
+}
+
+a {
+  color: $text;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .2s ease-out;
+  opacity: 1;
+}
+
+a:hover {
+  opacity: 0.65;
+}
+
+.element {
+	height:1000px;
+	background-color: #ededed;
+	font-size: 45px;
+	border-top:1px solid #000;
+	padding-top:55px;
+	padding-left:10px;
+}
+
+
+button {
+  padding: 10px 20px;
+  color: $text;
+  font-size: 1.1em;
+  font-weight: 500;
+  background-color: transparent;
+  border: 2px solid $text;
+  border-radius: 50px;
+  transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  cursor: pointer;
+}
+
+button:hover {
+  color: $primary;
+  background-color: $text;
+}
+
+button:focus {
+  outline: 0;
+}
+
+@import 'components/Portfolio/Portfolio';

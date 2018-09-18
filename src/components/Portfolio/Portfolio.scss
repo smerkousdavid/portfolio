@@ -1,0 +1,133 @@
+$itemColor: $primary;
+$itemSelectedColor: #222222;
+
+// Burger menu
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    top: 30px;
+    right: 30px;
+}
+
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
+    transition: opacity .2s ease-in-out;
+}
+
+.bm-cross-button:hover {
+    opacity: 0.8;
+}
+
+
+.bm-cross {
+    background: $itemColor;
+    width: 2px !important;
+}
+
+.bm-burger-bars {
+    background: $text;
+    height: 8% !important;
+    border-radius: 10%;
+}
+
+.bm-menu-wrap {
+    background-color: $secondary;
+}
+
+.bm-item-list {
+    padding: 0.8em;
+    height: 90%;
+}
+
+
+// Menu items
+.menu-offset {
+    margin-left: 20px;
+}
+
+.menu-item {
+    display: block;
+    padding: 0.8em;
+    margin: 0 auto;
+    color: $itemColor;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    transition: opacity .2s ease-in-out;
+    opacity: 0.8;
+}
+
+.menu-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    height: auto;
+    opacity: 0.8;
+    vertical-align: text-bottom;
+}
+
+.menu-text {
+    display: inline-block;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    margin-left: 10px;
+    font-family: 'Raleway', Arial, sans-serif;
+    font-weight: 500;
+}
+
+//Contact Form
+#contact {
+    margin: auto;
+    background-color: #F9F9F9;
+    padding: 25px;
+    margin: auto 0;
+    display: flex;
+    border-radius: 25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 300px;
+    box-shadow: 0 0 20px 0 rgba(0, 10, 5, 0.13), 0 5px 5px 0 rgba(0, 10, 5, 0.16);
+}
+
+#contact input, #contact textarea, #contact select {
+    font-family: $fontFamily;
+    border: 1px solid #cccccc;
+    background: #FBFBFBFB;
+    align-self: stretch;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+#contact select:invalid {
+    color: #777777;
+}
+
+#contact select option:enabled {
+    color: $text;
+}
+
+#contact textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+}
+
+#contact input:hover, #contact textarea:hover, #contact select:hover {
+    -webkit-transition: border-color 0.3s ease-in-out;
+    -moz-transition: border-color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out;
+    border: 1px solid #aaa;
+}
+
+#contact input:focus, #contact textarea:focus, #contact select:hover {
+    outline: 0;
+    border: 1px solid #aaa;
+}
+
+#contact button {
+    margin: 20px 20px 0 20px;
+}
