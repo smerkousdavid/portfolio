@@ -22,21 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
-
-import autobind from 'autobind-decorator';
 
 class Header extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        <a style={styles.nameTitle} href="./">David Smerkous</a>
+        <a style={styles.nameTitle} onClick={this.props.onHome}>David Smerkous</a>
       </div>
     );
   }
 }
+
+Header.propTypes = {
+  onHome: PropTypes.func.isRequired
+};
 
 const styles = {
   container: {

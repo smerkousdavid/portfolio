@@ -100,11 +100,7 @@ const cStyles = {
     container: {
         display: 'flex',
         justifyContent: 'space-around',
-        alignItems: 'center',
-        margin: 0,
-        padding: 0,
-        width: '100%',
-        height: '100vh'
+        alignItems: 'center'
     },
     rightContainer: {
         display: 'flex',

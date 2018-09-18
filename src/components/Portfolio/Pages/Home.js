@@ -23,6 +23,7 @@
  * SOFTWARE.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 import ResizeDetector from 'react-resize-detector';
@@ -62,7 +63,7 @@ class Content extends Page {
                 </Item>
 
                 <Item>
-                    <button style={cStyles.button}>About Me</button>
+                    <button style={cStyles.button} onClick={this.onAbout}>About Me</button>
                 </Item>
             </SlideIn>
         );
@@ -111,6 +112,11 @@ class Content extends Page {
         //this.solarSystem.setStage(this.getScaled('w', 0.7), this.getScaled('h', 0.6), ratio, ratio, 100, () => {
         //    console.log('done!');
         //});
+    }
+
+    @autobind
+    onAbout() {
+        this.props.api.moveTo('home', 1);
     }
 
     setSolarSystemUpdate(speed, period) {
@@ -176,7 +182,7 @@ const styles = {
     container: {
         margin: 0,
         padding: 0,
-        width: '100%',
+        width: '100vw',
         height: '100vh',
     },
     profile: {
@@ -208,7 +214,7 @@ const styles = {
         display: 'inline-block',
         listStyle: 'none',
         position: 'fixed',
-        marginLeft: '10%',
+        marginLeft: '10vw',
         marginTop: '10em',
         zIndex: 200
     },
@@ -227,7 +233,8 @@ const styles = {
     }
 };
 
-        // animation: 'x 1s',
-        // animationName: Radium.keyframes(slideInRight, 'slideInRight'),
+Content.propTypes = {
+    api: PropTypes.any.isRequired
+};
 
 export default Radium(Content);

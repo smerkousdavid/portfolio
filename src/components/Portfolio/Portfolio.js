@@ -61,9 +61,9 @@ class Portfolio extends React.Component {
         </Menu>
 
         <div id="main-content">
-          <HeaderContent />
+          <HeaderContent onHome={() => this.fullpage.moveTo('home', 0)}/>
           <FullPage
-            anchors={['home', 'second', 'third']}
+            anchors={['home', 'project', 'contactme']}
             callbacks={['onLeave', 'afterLoad']}
             licenseKey="OPEN-SOURCE-GPLV3-LICENSE"
             scrollingSpeed={1000}
@@ -71,20 +71,31 @@ class Portfolio extends React.Component {
             easingcss3="cubic-bezier(0.840, -0.100, 0.380, 1.135)"
             navigation={true}
             navigationPosition="left"
+            navigationTooltips={['Home', 'Projects', 'Contact']}
             scrollOverflow={true}
-            render={({ state, fullpageApi }) =>
-                <div>
-                  <div className="section">
-                    <Pages.Home state={state} />
+            controlArrows={false}
+            render={({ state, fullpageApi }) => {
+                this.fullpage = fullpageApi;
+
+                return (
+                  <div>
+                    <div className="section">
+                      <div className="slide">
+                        <Pages.Home state={state} api={fullpageApi} />
+                      </div>
+                      <div className="slide">
+                        <Pages.About state={state} api={fullpageApi} />
+                      </div>
+                    </div>
+                    <div className="section">
+                      <Pages.Project state={state} />
+                    </div>
+                    <div className="section">
+                      <Pages.Contact state={state} />
+                    </div>
                   </div>
-                  <div className="section">
-                    <Pages.Project state={state} />
-                  </div>
-                  <div className="section">
-                    <Pages.Contact state={state} />
-                  </div>
-                </div>
-            } />
+                );
+              }} />
             <div id="fp-nav" className="fp-left" style={{ marginTop: '-33.5px' }}>
               <ul>
                 <li>
