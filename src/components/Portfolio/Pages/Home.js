@@ -30,7 +30,7 @@ import Radium from 'radium';
 import ResizeDetector from 'react-resize-detector';
 import CursorPosition from 'react-cursor-position';
 
-import SolarSystem from 'components/SolarSystem/SolarSystem';
+import SolarSystem from 'solarsystem';
 
 import { SlideIn, Item, ItemBorder, Page, cStyles } from '../Common';
 

@@ -5,6 +5,21 @@
     ],
 		"plugins": [
 			"@babel/plugin-proposal-function-bind",
-			["@babel/plugin-proposal-decorators", { "legacy": true }]
-		]
+			["@babel/plugin-proposal-decorators", { "legacy": true }],
+			["module-resolver", {
+				"root": ["./src"],
+				"alias": {
+						"header": "./src/components/Navigation/Header",
+						"controls": "./src/components/Navigation/Controls",
+						"colors": "./src/configs/Colors",
+						"solarsystem": "./src/components/SolarSystem/SolarSystem",
+						"underscore": "lodash"
+				}
+			}]
+		],
+		"env": {
+			"production": {
+				"plugins": ["transform-remove-console"]
+			}
+		}
 }

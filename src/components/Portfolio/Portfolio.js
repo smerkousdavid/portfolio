@@ -33,10 +33,10 @@ import {
   FaHome
 } from 'react-icons/fa';
 
-import HeaderContent from '../Navigation/Header';
-import * as Pages from './Pages';
+import Header from 'header';
+import Controls from 'controls';
 import projects from 'configs/Projects';
-import Controls from 'components/Navigation/Controls';
+import * as Pages from './Pages';
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -81,7 +81,7 @@ class Portfolio extends React.Component {
         </Menu>
 
         <div id="main-content">
-          <HeaderContent onHome={() => this.fullpage.moveTo('home', 0)}/>
+          <Header onHome={() => this.fullpage.moveTo('home', 0)}/>
           <Controls ref={ref => this.controls = ref} onPrev={() => this.fullpage.moveSlideLeft()} onNext={() => this.fullpage.moveSlideRight()} />
           <FullPage
             anchors={['home', 'project', 'contactme']}
