@@ -33,12 +33,12 @@ $itemSelectedColor: #222222;
 }
 
 .bm-menu-wrap {
-    background-color: $secondary;
+    background-color: $text;
 }
 
 .bm-item-list {
     padding: 0.8em;
-    height: 90%;
+    height: 90% !important;
 }
 
 
@@ -62,20 +62,21 @@ $itemSelectedColor: #222222;
 
 .menu-icon {
     display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.45em;
+    height: 1.45em;
     height: auto;
-    opacity: 0.8;
+    opacity: 1;
+    margin-left: 20px;
     vertical-align: text-bottom;
+
 }
 
 .menu-text {
     display: inline-block;
-    font-size: 1.3em;
+    font-size: 1.25em;
     text-transform: uppercase;
-    margin-left: 10px;
-    font-family: 'Raleway', Arial, sans-serif;
-    font-weight: 500;
+    margin-left: 23px;
+    font-weight: 400;
 }
 
 //Contact Form

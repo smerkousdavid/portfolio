@@ -62,6 +62,7 @@
     "react-pose": "^3.3.0",
     "react-redux": "^5.0.7",
     "react-resize-detector": "^3.1.2",
+    "react-responsive": "^5.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-sticky-header": "^0.2.0",

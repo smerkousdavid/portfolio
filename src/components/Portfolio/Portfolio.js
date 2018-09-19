@@ -30,8 +30,11 @@ import FullPage from '@fullpage/react-fullpage';
 import 'fullpage.js/vendors/scrolloverflow';
 import { push as Menu } from 'react-burger-menu';
 import {
-  FaHome
-} from 'react-icons/fa';
+  FiHome,
+  FiDatabase,
+  FiMessageSquare,
+  FiAlignLeft
+} from 'react-icons/fi';
 
 import Header from 'header';
 import Controls from 'controls';
@@ -41,6 +44,10 @@ import * as Pages from './Pages';
 class Portfolio extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      menuOpen: false
+    };
 
     this.projects = [];
     projects.forEach((val, ind) => {
@@ -56,28 +63,48 @@ class Portfolio extends React.Component {
         </div>
       );
     });
+
+    this.handleStateChange = this._handleStateChange.bind(this);
   }
 
   renderMenuItem(name, icon, handler) {
     return (
-      <div className="menu-item" onClick={handler}>
+      <div className="menu-item" onClick={() => {
+          this.closeMenu();
+          setTimeout(handler, 600);
+        }}>
         <div className="menu-offset">
-          <FaHome className="menu-icon" />
+          {icon}
           <span className="menu-text">{name}</span>
         </div>
       </div>
     );
   }
 
+  _handleStateChange(state) {
+    this.setState({ menuOpen: state.isOpen });
+  }
+
+  closeMenu() {
+    this.setState({ menuOpen: false });
+  }
+
   render() {
+    const { menuOpen } = this.state;
+
     return (
       <div id="wrapper-content">
         <Menu
+          isOpen={menuOpen}
+          onStateChange={this.handleStateChange}
           pageWrapId="main-content"
           outerContainerId="wrapper-content"
           width={300}
           right>
-          {this.renderMenuItem('Home')}
+          {this.renderMenuItem('Home', <FiHome className="menu-icon" />, () => this.fullpage.moveTo('home', 0))}
+          {this.renderMenuItem('About', <FiAlignLeft className="menu-icon" />, () => this.fullpage.moveTo('home', 1))}
+          {this.renderMenuItem('Projects', <FiDatabase className="menu-icon" />, () => this.fullpage.moveTo('project', 0))}
+          {this.renderMenuItem('Contact', <FiMessageSquare className="menu-icon" />, () => this.fullpage.moveTo('contactme', 0))}
         </Menu>
 
         <div id="main-content">

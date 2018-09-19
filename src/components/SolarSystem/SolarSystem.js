@@ -255,7 +255,7 @@ SolarSystem.propTypes = {
     initialHeight: PropTypes.number.isRequired,
     initialSolarX: PropTypes.number.isRequired,
     initialSolarY: PropTypes.number.isRequired,
-    position: PropTypes.any.isRequired
+    position: PropTypes.any
 };
 
 export default Radium(SolarSystem);

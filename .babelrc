@@ -12,6 +12,7 @@
 						"header": "./src/components/Navigation/Header",
 						"controls": "./src/components/Navigation/Controls",
 						"colors": "./src/configs/Colors",
+						"media": "./src/configs/Media",
 						"solarsystem": "./src/components/SolarSystem/SolarSystem",
 						"underscore": "lodash"
 				}
