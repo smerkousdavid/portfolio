@@ -36,23 +36,23 @@ const SlideIn = posed.ul({
 });
 
 const SlideInRight = posed.div({
-    in: { x: '0%', opacity: 1},
-    out: { x: '50%', opacity: 0}
+    in: { x: '0%', opacity: 1 },
+    out: { x: '50%', opacity: 0 }
 });
 
 const FadeInTop = posed.div({
-    in: { y: '0%', opacity: 1},
-    out: { y: '-100%', opacity: 0}
+    in: { y: '0%', opacity: 1 },
+    out: { y: '-100%', opacity: 0 }
 });
 
 const Item = posed.li({
-    in: { x: '0%', opacity: 1},
-    out: { x: '-150%', opacity: 0}
+    in: { x: '0%', opacity: 1 },
+    out: { x: '-150%', opacity: 0 }
 });
 
 const ItemBorder = posed.li({
-    in: { x: '0%', opacity: 1},
-    out: { x: '-300%', opacity: 0}
+    in: { x: '0%', opacity: 1 },
+    out: { x: '-300%', opacity: 0 }
 });
 
 class Page extends React.Component {

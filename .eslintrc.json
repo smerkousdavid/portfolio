@@ -37,7 +37,6 @@
         "block-spacing": "error",
         "brace-style": "error",
         "callback-return": "error",
-        "camelcase": "error",
         "class-methods-use-this": "off",
         "comma-dangle": "error",
         "comma-spacing": [
@@ -65,7 +64,6 @@
         "guard-for-in": "error",
         "handle-callback-err": "error",
         "id-blacklist": "error",
-        "id-length": "error",
         "id-match": "error",
         "indent": "off",
         "indent-legacy": "off",
@@ -162,7 +160,6 @@
         "no-throw-literal": "error",
         "no-undef-init": "error",
         "no-undefined": "error",
-        "no-underscore-dangle": "error",
         "no-unmodified-loop-condition": "error",
         "no-unneeded-ternary": "error",
         "no-unused-expressions": "error",
@@ -178,12 +175,10 @@
         "no-whitespace-before-property": "error",
         "no-with": "error",
         "nonblock-statement-body-position": "error",
-        "object-curly-newline": "error",
         "object-curly-spacing": [
             "error",
             "always"
         ],
-        "object-property-newline": "error",
         "object-shorthand": "error",
         "operator-assignment": "error",
         "operator-linebreak": "error",

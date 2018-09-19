@@ -28,9 +28,7 @@ import Radium from 'radium';
 
 import { Circle } from 'react-konva';
 
-
 import { getPlanetPosition, closeTo } from './Util';
-import autobind from 'autobind-decorator';
 
 class Planet extends React.Component {
     constructor(props) {
@@ -39,9 +37,7 @@ class Planet extends React.Component {
         this.setSolarCenter = props.setSolarCenter;
         this.name = props.name;
 
-        this.state = {
-            orbitColor: configs.orbit.color
-        }
+        this.state = { orbitColor: configs.orbit.color };
     }
 
     renderOrbit(color) {
@@ -58,18 +54,14 @@ class Planet extends React.Component {
     }
 
     /* eslint-disable */
-    @autobind
-    onMouseOver() {
+    /* onMouseOver() {
         this.setState({ orbitColor: configs.orbit.hoverColor });
     }
 
-    @autobind
     onMouseLeave() {
         this.setState({ orbitColor: configs.orbit.color });
-    }
+    } */
     /* eslint-enable */
-
-
 
     render() {
         /* eslint-disable */
@@ -104,10 +96,10 @@ const configs = {
         hoverColor: '#993737' 
     },
     planet: {
-        hoverMask: "#99373720",
+        hoverMask: '#99373720',
         hoverBorderColor: '#993737'
     }
-}
+};
 
 Planet.propTypes = {
     name: PropTypes.string.isRequired,

@@ -29,7 +29,6 @@ import Radium from 'radium';
 
 import ResizeDetector from 'react-resize-detector';
 import CursorPosition from 'react-cursor-position';
-import autobind from 'autobind-decorator';
 
 import SolarSystem from 'components/SolarSystem/SolarSystem';
 
@@ -63,10 +62,12 @@ class Content extends Page {
                 </Item>
 
                 <Item>
-                    <button style={cStyles.button} onClick={this.onAbout}>About Me</button>
+                    <button style={cStyles.button} onClick={() => this.props.api.moveTo('home', 1)}>About Me</button>
                 </Item>
             </SlideIn>
         );
+
+        this.resizeSolarSystem = this._resizeSolarSystem.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -74,7 +75,7 @@ class Content extends Page {
         
         switch (callback) {
         case 'onLeave':
-            if (destination.index === 1 && direction === "down") {
+            if (destination.index === 1 && direction === 'down') {
                 this.setSolarSystem(2, this.solarY, this.solarRatio - 0.2, 500, () => {
                     this.solarSystem.stopRotation();
                 });
@@ -82,7 +83,7 @@ class Content extends Page {
             }
             break;
         case 'afterLoad': 
-            if (destination.index === 0 && direction === "up") {
+            if (destination.index === 0 && direction === 'up') {
                 this.solarSystem.resetRotation();
                 this.setSolarSystem(this.solarX, this.solarY, this.solarRatio, 500, () => {
                     this.slideIn();
@@ -99,44 +100,36 @@ class Content extends Page {
         this.setSolarSystem(this.solarX, this.solarY, this.solarRatio, null, null, 3, 1);
         
         setTimeout(() => {
-            //Update the solarsystem ratios
+            // Update the solarsystem ratios
             this.solarX = 0.7;
             this.solarY = 0.6;
             this.solarRatio = 0.75;
             this.setSolarSystem(this.solarX, this.solarY, this.solarRatio, 400, () => {
-                console.log('finished update!');
                 this.solarSystem.resetRotation();
                 this.slideIn();
             }, this.solarSystem.defaultSpeed / this.solarSystem.defaultUpdate);
-            //this.setState({ visible: true });
+            // this.setState({ visible: true });
         }, 1000);
-        //this.resizeSolarSystem();
-        //this.solarSystem.transitionTo(thi)
-        //const ratio = this.getScaled('a', 0.75);
-        //this.solarSystem.setStage(this.getScaled('w', 0.7), this.getScaled('h', 0.6), ratio, ratio, 100, () => {
+        // this.resizeSolarSystem();
+        // this.solarSystem.transitionTo(thi)
+        // const ratio = this.getScaled('a', 0.75);
+        // this.solarSystem.setStage(this.getScaled('w', 0.7), this.getScaled('h', 0.6), ratio, ratio, 100, () => {
         //    console.log('done!');
-        //});
+        // });
     }
 
-    /* eslint-disable */
-    @autobind
-    onAbout() {
-        this.props.api.moveTo('home', 1);
-    }
-
-    @autobind
-    resizeSolarSystem() {
+    _resizeSolarSystem() {
         this.setSolarSystem(this.solarX, this.solarY, this.solarRatio);
     }
-    /* eslint-enable */
 
     setSolarSystemUpdate(speed, period) {
         this.solarSystem.setUpdateRate(speed, period);
     }
 
     setSolarSystem(solarX, solarY, scaled, millis, callback, speed, period) {
-        if(period) this.setSolarSystemUpdate(speed, period);
+        if (period) this.setSolarSystemUpdate(speed, period);
         const ratio = this.getScaled('a', scaled);
+
         this.solarSystem.setStage(this.getScaled('w', solarX), this.getScaled('h', solarY), ratio, ratio, millis, callback, speed);
     }
 
@@ -171,25 +164,12 @@ class Content extends Page {
     }
 }
 
-/*
-                <img style={styles.mockup} src={require('imgs/phone_mockup.png')} />
-                <CursorPosition>
-                    <SolarSystem
-                        ref={ref => this.solarSystem = ref}
-                        initialWidth={this.getScaled('a', 0.5)}
-                        initialHeight={this.getScaled('a', 0.5)}
-                        initialSolarX={this.getScaled('w', 0.5)}
-                        initialSolarY={this.getScaled('h', 0.5)} />
-                    <ResizeDetector resizableElementId="root" handleWidth handleHeight onResize={this.resizeSolarSystem} />
-                </CursorPosition>
-    */
-
 const styles = {
     container: {
         margin: 0,
         padding: 0,
         width: '100vw',
-        height: '100vh',
+        height: '100vh'
     },
     profile: {
         display: 'inline-block',

@@ -26,10 +26,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 
-
 import { Stage, FastLayer, Circle } from 'react-konva';
 import { slideInRight } from 'react-animations';
-
 
 import Planet from './Planet';
 import { getPlanetConfigs, planetConfigs, closeTo } from './Util';
@@ -62,7 +60,6 @@ class SolarSystem extends React.Component {
         window.clearInterval(this.rotation);
     }
 
-    /* eslint-disable-next-line */
     UNSAFE_componentWillUpdate(nextProps, nextState) {
         if (this.state.updatePeriod !== nextState.updatePeriod) {
             window.clearInterval(this.rotation);

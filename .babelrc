@@ -1,0 +1,10 @@
+{
+    "presets": [
+				"@babel/env",
+        "@babel/preset-react"
+    ],
+		"plugins": [
+			"@babel/plugin-proposal-function-bind",
+			["@babel/plugin-proposal-decorators", { "legacy": true }]
+		]
+}
