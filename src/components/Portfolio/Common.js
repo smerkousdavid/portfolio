@@ -25,7 +25,6 @@
 import React from 'react';
 
 import posed from 'react-pose';
-import update from 'immutability-helper';
 
 const SlideIn = posed.ul({
     in: {
@@ -39,6 +38,11 @@ const SlideIn = posed.ul({
 const SlideInRight = posed.div({
     in: { x: '0%', opacity: 1},
     out: { x: '50%', opacity: 0}
+});
+
+const FadeInTop = posed.div({
+    in: { y: '0%', opacity: 1},
+    out: { y: '-100%', opacity: 0}
 });
 
 const Item = posed.li({
@@ -100,7 +104,11 @@ const cStyles = {
     container: {
         display: 'flex',
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: 0,
+        padding: 0,
+        width: '100%',
+        height: '100vh'
     },
     rightContainer: {
         display: 'flex',
@@ -171,4 +179,4 @@ const cStyles = {
     }
 };
 
-export { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles };
+export { SlideIn, SlideInRight, FadeInTop, Item, ItemBorder, Page, cStyles };

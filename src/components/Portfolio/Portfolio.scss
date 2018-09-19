@@ -136,3 +136,14 @@ $itemSelectedColor: #222222;
 .fp-tooltip {
     color: $text !important;
 }
+
+// Sticky Headers
+.sticky-header {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+
+    * {
+    box-sizing: border-box;
+    }
+}

@@ -22,11 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import React from 'react';
+ /* global require */
+ import React from 'react';
 import Radium from 'radium';
 
 import TextFit from 'react-textfit';
-import autobind from 'autobind-decorator';
 
 import { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles } from '../Common';
 
@@ -55,7 +55,7 @@ class Content extends Page {
                 </Item>
 
                 <Item>
-                    <button style={cStyles.button} onClick={this.onExplore}>Explore</button>
+                    <button style={cStyles.button} onClick={() => this.props.api.moveTo('project', 1)}>Explore</button>
                 </Item>
             </SlideIn>
         );
@@ -63,47 +63,35 @@ class Content extends Page {
         this.addSlide(1, (pose) =>
             <SlideInRight pose={pose}>
                 <div style={cStyles.rightContainer}>
-                    <img style={cStyles.showcase} src={require('imgs/phone.png')} />
+                    <img style={cStyles.showcase} src={require('imgs/phone.png')} alt="projects" />
                 </div>
             </SlideInRight>
         );
     }
 
     componentWillReceiveProps(nextProps) {
-        const { destination, direction, callback } = nextProps.state;
+        const { destination, callback } = nextProps.state;
+        
         switch (callback) {
-        case "onLeave":
-            if(destination.index !== 1) {
+        case 'onLeave':
+            if (destination.index !== 1) {
                 this.slideOut();
             }
             break;
-        case "afterLoad":
-            if(destination.index === 1) {
+        case 'afterLoad':
+            if (destination.index === 1) {
                 this.slideIn();
                 this.slideIn(1);
             }
             break;
-        };
+        default:
+            break;
+        }
     }
 
     componentDidMount() {
         this.slideOut();
         this.slideOut(1);
-    }
-
-    @autobind
-    onExplore() {
-        /*
-         *                  <div className="slide">
-              <h3>Slide 2.1</h3>
-            </div>
-            <div className="slide">
-              <h3>Slide 2.2</h3>
-            </div>
-            <div className="slide">
-              <h3>Slide 2.3</h3>
-            </div>
-         */
     }
 
     render() {

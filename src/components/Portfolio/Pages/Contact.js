@@ -26,12 +26,10 @@ import React from 'react';
 import Radium from 'radium';
 
 import TextFit from 'react-textfit';
-import autobind from 'autobind-decorator';
 import {
     MdMail,
     MdPhoneAndroid
 } from 'react-icons/md';
-
 import {
     FaGithub,
     FaLinkedinIn
@@ -68,11 +66,11 @@ class Content extends Page {
                 </Item>
 
                 <Item style={cStyles.subtagline}>
-                    <FaGithub /> <a style={styles.tagText} target="_blank" href="https://github.com/smerkousdavid">Github</a>
+                    <FaGithub /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://github.com/smerkousdavid">Github</a>
                 </Item>
 
                 <Item style={cStyles.subtagline}>
-                    <FaLinkedinIn /> <a style={styles.tagText} rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/david-smerkous">Linkedin</a>
+                    <FaLinkedinIn /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/david-smerkous">Linkedin</a>
                 </Item>
             </SlideIn>);
 
@@ -150,4 +148,3 @@ const styles = {
 };
 
 export default Radium(Content);
-    

@@ -26,34 +26,74 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 
-class Header extends React.Component {
+import {
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight
+} from 'react-icons/md';
+
+class Controls extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      visible: false
+    };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.visible !== this.state.visible) {
+      return true;
+    }
+    
+    return false;
+  }
+
+  setVisible(visible) {
+    this.setState({ visible });
+  }
+
   render() {
+    if (!this.state.visible) return null;
+
     return (
       <div style={styles.container}>
-        <a style={styles.nameTitle} onClick={this.props.onHome}>David Smerkous</a>
+        <a style={styles.control} onClick={this.props.onPrev}><MdKeyboardArrowLeft style={{ fontSize: '1.2em' }}/>Previous</a>
+        <a style={styles.control} onClick={this.props.onNext}>Next<MdKeyboardArrowRight style={{ fontSize: '1.2em' }}/></a>
       </div>
     );
   }
 }
 
-Header.propTypes = {
-  onHome: PropTypes.func.isRequired
+Controls.propTypes = {
+  onPrev: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
 };
 
 const styles = {
   container: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     position: 'fixed',
     height: '5vh',
-    width: '100vw',
+    fontSize: '1.5em',
     padding: 10,
-    zIndex: 1
+    margin: 0,
+    zIndex: 1,
+    left: 0,
+    right: 0,
+    bottom: 0
   },
-  nameTitle: {
-    position: 'fixed',
-    top: 25,
-    left: 20,
-    fontSize: 30
+  control: {
+    display: 'flex',
+    flexDirection: 'row',
+    placeContent: 'stretch center',
+    alignItems: 'center',
+    fontSize: '1em',
+    paddingLeft: 5,
+    paddingRight: 5
   }
 };
 
-export default Radium(Header);
+export default Radium(Controls);

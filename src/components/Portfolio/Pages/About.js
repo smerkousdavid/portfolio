@@ -25,17 +25,10 @@
 import React from 'react';
 import Radium from 'radium';
 
-import TextFit from 'react-textfit';
-import autobind from 'autobind-decorator';
+import Colors from 'configs/Colors';
 
-import { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles } from '../Common';
-
-class Content extends Page {
-    constructor(props) {
-        super(props);
-    }
-
-    componentWillReceiveProps(nextProps) {
+class Content extends React.Component {
+    /* componentWillReceiveProps(nextProps) {
         const { destination, direction, callback } = nextProps.state;
         switch (callback) {
         case "onLeave":
@@ -47,18 +40,26 @@ class Content extends Page {
             }
             break;
         };
-    }
+    }*/
 
     render() {
         return (
             <div style={styles.container}>
-                <img style={styles.background} src={require('imgs/background.jpg')} />
-                <div style={styles.header}>
-                    <p style={styles.headerText}>About Me</p>
+                <div style={styles.center}>
+                    <p style={styles.bigText}>About Me</p>
+                    <p style={styles.content}>
+                        I am currently a freshman student at the University of Washington perusing a degree in Computer Science. 
+                        Most of my work has been private consulting and freelancing for individual projects. However, throughout 
+                        high school I got the chance to work with closely with the administration of nearby schools to create 
+                        software solutions for both students and teachers, including plagiarism checkers and a distributed block lunch apps. 
+                        Other R&D projects include RFID student trackers and a safety card system for metal shop students. 
+                        Later on I moved onto more complicated solutions such as REM sleep cycle tracking, remote text to speech 
+                        engines - I developed this framework while I interned at cloudyBoss, - and anonymous distributed peer to peer 
+                        networks. I love working with others on projects and when I set my mind to something I will devote all of my time 
+                        to get that thing done.</p>
                 </div>
             </div>
         );
-        // 
     }
 }
 
@@ -66,7 +67,7 @@ const styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'stretch',
         alignContent: 'stretch',
         width: '100vw',
@@ -89,10 +90,37 @@ const styles = {
     },
     background: {
         width: '100vw',
-        height: '100vh',
+        height: '35vh',
         objectFit: 'cover',
-        filter: 'blur(3px) grayscale(100%)',
+        filter: 'grayscale(100%)',
         transform: 'scale(1.05)'
+    },
+    center: {
+        position: 'absolute',
+        display: 'flex',
+        placeSelf: 'center',
+        placeContent: 'center',
+        flexDirection: 'column',
+        border: `2px solid ${Colors.text}`,
+        borderRadius: 25,
+        padding: 25,
+        maxWidth: '60vw',
+        zIndex: 100
+    },
+    bigText: {
+        fontSize: '5em',
+        fontWeight: 600,
+        textAlign: 'center',
+        margin: 20
+    },
+    content: {
+        fontSize: '1.05em',
+        paddingLeft: 10,
+        paddingRight: 10,
+        textOverflow: 'clip',
+        textDecoration: 'none',
+        textAlign: 'justify',
+        textIndent: 35
     }
 };
 

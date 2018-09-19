@@ -35,8 +35,28 @@ import {
 
 import HeaderContent from '../Navigation/Header';
 import * as Pages from './Pages';
+import projects from 'configs/Projects';
+import Controls from 'components/Navigation/Controls';
 
 class Portfolio extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.projects = [];
+    projects.forEach((val, ind) => {
+      this.projects.push(
+        <div key={ind} className="slide">
+          <div style={styles.projectContainer}>
+            <img style={styles.projectImage} src={val.image} alt={val.name} />
+            <p style={styles.projectTitle}>{val.name}</p>
+            <p style={styles.projectRole}>{val.role}</p>
+            <p style={styles.projectDescription}>{val.desc}</p>
+            <button style={styles.projectExplore} onClick={() => window.open(val.explore, '_blank').focus()}>Visit Site</button>
+         </div>
+        </div>
+      );
+    });
+  }
 
   renderMenuItem(name, icon, handler) {
     return (
@@ -62,9 +82,10 @@ class Portfolio extends React.Component {
 
         <div id="main-content">
           <HeaderContent onHome={() => this.fullpage.moveTo('home', 0)}/>
+          <Controls ref={ref => this.controls = ref} onPrev={() => this.fullpage.moveSlideLeft()} onNext={() => this.fullpage.moveSlideRight()} />
           <FullPage
             anchors={['home', 'project', 'contactme']}
-            callbacks={['onLeave', 'afterLoad']}
+            callbacks={['onLeave', 'afterLoad', 'afterSlideLoad']}
             licenseKey="OPEN-SOURCE-GPLV3-LICENSE"
             scrollingSpeed={1000}
             css3={true}
@@ -75,20 +96,29 @@ class Portfolio extends React.Component {
             scrollOverflow={true}
             controlArrows={false}
             render={({ state, fullpageApi }) => {
-                this.fullpage = fullpageApi;
+                this.fullpage = fullpageApi || {};
+
+                if (state.callback === 'afterSlideLoad' || state.callback === 'afterLoad') {
+                  setTimeout(() => {
+                    this.controls.setVisible((fullpageApi.getActiveSlide() || { index: 0 }).index !== 0);
+                  }, 10);
+                }
 
                 return (
                   <div>
                     <div className="section">
                       <div className="slide">
-                        <Pages.Home state={state} api={fullpageApi} />
+                        <Pages.Home state={state} api={this.fullpage} />
                       </div>
                       <div className="slide">
-                        <Pages.About state={state} api={fullpageApi} />
+                        <Pages.About state={state} api={this.fullpage} />
                       </div>
                     </div>
                     <div className="section">
-                      <Pages.Project state={state} />
+                      <div className="slide">
+                        <Pages.Project state={state} api={this.fullpage} />
+                      </div>
+                      {this.projects}
                     </div>
                     <div className="section">
                       <Pages.Contact state={state} />
@@ -114,6 +144,42 @@ class Portfolio extends React.Component {
     );
   }
 }
+
+const styles = {
+  projectContainer: {
+    display: 'flex',
+    width: '100vw',
+    height: '100vh',
+    placeContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  projectImage: {
+    width: '30%',
+    height: '30%',
+    objectFit: 'contain'
+  },
+  projectTitle: {
+    fontSize: '1.7em',
+    fontWeight: 600,
+    marginTop: 20,
+    marginBottom: 5
+  },
+  projectRole: {
+    fontSize: '0.8em',
+    fontWeight: 500,
+    color: '#aaaaaa',
+    marginBottom: 10
+  },
+  projectDescription: {
+    fontSize: '1.05em',
+    marginTop: 13,
+    marginBottom: 10
+  },
+  projectExplore: {
+    marginTop: 15
+  }
+};
 
 /*
         <Header>

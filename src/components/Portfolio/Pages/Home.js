@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+ /* global require */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
@@ -31,7 +32,6 @@ import CursorPosition from 'react-cursor-position';
 import autobind from 'autobind-decorator';
 
 import SolarSystem from 'components/SolarSystem/SolarSystem';
-import Colors from 'configs/Colors';
 
 import { SlideIn, Item, ItemBorder, Page, cStyles } from '../Common';
 
@@ -47,7 +47,7 @@ class Content extends Page {
         this.addSlide(0, (pose) => 
             <SlideIn style={styles.bigContainer} pose={pose}>
                 <Item>
-                    <img style={styles.profile} src={require('imgs/profile.jpg')} />
+                    <img style={styles.profile} src={require('imgs/profile.jpg')} alt="profile" />
 
                     <div style={styles.bigTextContainer}>
                         <p style={styles.bigText}>David</p>
@@ -71,23 +71,27 @@ class Content extends Page {
 
     componentWillReceiveProps(nextProps) {
         const { destination, direction, callback } = nextProps.state;
+        
         switch (callback) {
-        case "onLeave":
-            if(destination.index === 1 && direction === "down") {
+        case 'onLeave':
+            if (destination.index === 1 && direction === "down") {
                 this.setSolarSystem(2, this.solarY, this.solarRatio - 0.2, 500, () => {
                     this.solarSystem.stopRotation();
                 });
                 this.slideOut();
             }
-        case "afterLoad": 
-            if(destination.index === 0 && direction === "up") {
+            break;
+        case 'afterLoad': 
+            if (destination.index === 0 && direction === "up") {
                 this.solarSystem.resetRotation();
                 this.setSolarSystem(this.solarX, this.solarY, this.solarRatio, 500, () => {
                     this.slideIn();
                 });
             }
             break;
-        };
+        default:
+            break;
+        }
     }
 
     componentDidMount() {
@@ -114,10 +118,17 @@ class Content extends Page {
         //});
     }
 
+    /* eslint-disable */
     @autobind
     onAbout() {
         this.props.api.moveTo('home', 1);
     }
+
+    @autobind
+    resizeSolarSystem() {
+        this.setSolarSystem(this.solarX, this.solarY, this.solarRatio);
+    }
+    /* eslint-enable */
 
     setSolarSystemUpdate(speed, period) {
         this.solarSystem.setUpdateRate(speed, period);
@@ -140,11 +151,6 @@ class Content extends Page {
         default:
             return 0;
         }
-    }
-
-    @autobind
-    resizeSolarSystem() {
-        this.setSolarSystem(this.solarX, this.solarY, this.solarRatio);
     }
 
     render() {

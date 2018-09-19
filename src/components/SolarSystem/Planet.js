@@ -57,6 +57,7 @@ class Planet extends React.Component {
         );
     }
 
+    /* eslint-disable */
     @autobind
     onMouseOver() {
         this.setState({ orbitColor: configs.orbit.hoverColor });
@@ -66,15 +67,18 @@ class Planet extends React.Component {
     onMouseLeave() {
         this.setState({ orbitColor: configs.orbit.color });
     }
+    /* eslint-enable */
 
 
 
     render() {
+        /* eslint-disable */
         if(closeTo(Math.sqrt(Math.pow(this.props.mouse.x - this.props.solarX, 2) + Math.pow(this.props.mouse.y - this.props.solarY, 2)), this.props.orbit, this.props.radius - 1)) {
             this.state.orbitColor = configs.orbit.hoverColor;
         } else {
             this.state.orbitColor = configs.orbit.color;
         }
+        /* eslint-enable */
 
         const cPos = getPlanetPosition(this.props.orbit, (this.props.angle + this.props.configs.angleInitial) % 360, this.props.solarX, this.props.solarY);
         

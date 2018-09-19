@@ -27,18 +27,12 @@ import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 
-import Konva from 'konva';
-import { Stage, FastLayer, Circle, Linear } from 'react-konva';
+import { Stage, FastLayer, Circle } from 'react-konva';
 import { slideInRight } from 'react-animations';
-import AutoScale from 'react-auto-scale';
-import autobind from 'autobind-decorator';
 
-import Colors from 'configs/Colors';
 
 import Planet from './Planet';
 import { getPlanetConfigs, planetConfigs, closeTo } from './Util';
-import { setInterval } from 'timers';
-import { Promise } from 'core-js';
 
 class SolarSystem extends React.Component {
     constructor(props) {
@@ -68,6 +62,7 @@ class SolarSystem extends React.Component {
         window.clearInterval(this.rotation);
     }
 
+    /* eslint-disable-next-line */
     UNSAFE_componentWillUpdate(nextProps, nextState) {
         if (this.state.updatePeriod !== nextState.updatePeriod) {
             window.clearInterval(this.rotation);
@@ -227,8 +222,9 @@ class SolarSystem extends React.Component {
     }
 
     render() {
-        const offsetX = 0; //this.getScaled('w', ((window.innerWidth / 2) - this.props.position.x) / (window.innerWidth * 60));
-        const offsetY = 0; //this.getScaled('h', ((window.innerHeight / 2) - this.props.position.y) / (window.innerHeight * 60));
+        // @TODO implement smoooth mouse transitions with the solar system
+        const offsetX = 0; // this.getScaled('w', ((window.innerWidth / 2) - this.props.position.x) / (window.innerWidth * 60));
+        const offsetY = 0; // this.getScaled('h', ((window.innerHeight / 2) - this.props.position.y) / (window.innerHeight * 60));
 
         return (
             <Stage width={window.innerWidth} height={window.innerHeight}>
@@ -261,7 +257,8 @@ SolarSystem.propTypes = {
     initialWidth: PropTypes.number.isRequired,
     initialHeight: PropTypes.number.isRequired,
     initialSolarX: PropTypes.number.isRequired,
-    initialSolarY: PropTypes.number.isRequired
+    initialSolarY: PropTypes.number.isRequired,
+    position: PropTypes.any.isRequired
 };
 
 export default Radium(SolarSystem);
