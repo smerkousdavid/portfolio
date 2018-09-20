@@ -40,6 +40,7 @@ import Header from 'header';
 import Controls from 'controls';
 import projects from 'configs/Projects';
 import * as Pages from './Pages';
+import { deviceSelect, deviceRun } from 'configs/Media';
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -49,17 +50,18 @@ class Portfolio extends React.Component {
       menuOpen: false
     };
 
+    // Do not use the desktop and mobile media queries in the project loops as the query keys break the MediaQuery library and it's just one big annoying mess
     this.projects = [];
     projects.forEach((val, ind) => {
       this.projects.push(
         <div key={ind} className="slide">
-          <div style={styles.projectContainer}>
+          <div style={deviceSelect({ desktop: styles.projectContainer, mobile: styles.projectContainerMobile })}>
             <img style={styles.projectImage} src={val.image} alt={val.name} />
             <p style={styles.projectTitle}>{val.name}</p>
             <p style={styles.projectRole}>{val.role}</p>
-            <p style={styles.projectDescription}>{val.desc}</p>
+            <p style={deviceSelect({ desktop: styles.projectDescription, mobile: styles.projectDescriptionMobile })}>{val.desc}</p>
             <button style={styles.projectExplore} onClick={() => window.open(val.explore, '_blank').focus()}>Visit Site</button>
-         </div>
+          </div>
         </div>
       );
     });
@@ -122,12 +124,23 @@ class Portfolio extends React.Component {
             navigationTooltips={['Home', 'Projects', 'Contact']}
             scrollOverflow={true}
             controlArrows={false}
+            autoScrolling={true}
             render={({ state, fullpageApi }) => {
                 this.fullpage = fullpageApi || {};
 
                 if (state.callback === 'afterSlideLoad' || state.callback === 'afterLoad') {
                   setTimeout(() => {
-                    this.controls.setVisible((fullpageApi.getActiveSlide() || { index: 0 }).index !== 0);
+                    const activeSlide = (fullpageApi.getActiveSlide() || { index: 0 }).index;
+                    const activeSection = fullpageApi.getActiveSection().anchor;
+
+                    deviceRun({
+                      desktop: () => {
+                        this.controls.setVisible(activeSlide !== 0);
+                      },
+                      mobile: () => {
+                        this.controls.setVisible(activeSlide !== 0 && !(activeSlide === 1 && activeSection === 'home'));
+                      }
+                    });
                   }, 10);
                 }
 
@@ -176,7 +189,15 @@ const styles = {
   projectContainer: {
     display: 'flex',
     width: '100vw',
-    height: '100vh',
+    height: '100%',
+    placeContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  projectContainerMobile: {
+    display: 'flex',
+    width: '100vw',
+    height: '90vh',
     placeContent: 'center',
     alignItems: 'center',
     flexDirection: 'column'
@@ -202,6 +223,14 @@ const styles = {
     fontSize: '1.05em',
     marginTop: 13,
     marginBottom: 10
+  },
+  projectDescriptionMobile: {
+    fontSize: '1.05em',
+    marginTop: 13,
+    marginBottom: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    textAlign: 'center'
   },
   projectExplore: {
     marginTop: 15

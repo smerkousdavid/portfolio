@@ -35,7 +35,8 @@ import {
     FaLinkedinIn
 } from 'react-icons/fa';
 
-import { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles } from '../Common';
+import { Desktop, Mobile } from 'media';
+import { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles, FadeIn } from '../Common';
 
 class Content extends Page {
     constructor(props) {
@@ -43,56 +44,88 @@ class Content extends Page {
 
         this.initSlides();
         this.addSlide(0, (pose) =>
-            <SlideIn style={cStyles.bigContainer} pose={pose}>
+          <div>
+            <Desktop>
+              <SlideIn style={cStyles.bigContainer} pose={pose}>
                 <Item>
-                    <div style={cStyles.bigTextContainer}>
-                        <TextFit
-                            mode="single"
-                            forceSingleModeWidth={false}
-                            style={cStyles.bigText}>
-                            Get In Touch
-                        </TextFit>
-                    </div>
+                  <div style={cStyles.bigTextContainer}>
+                    <TextFit
+                      mode="single"
+                      forceSingleModeWidth={false}
+                      style={cStyles.bigText}>
+                      Get In Touch
+                    </TextFit>
+                  </div>
                 </Item>
 
                 <ItemBorder style={cStyles.border} />
 
                 <Item style={cStyles.tagline}>
-                    <MdMail /> <a style={styles.tagText} href="mailto:david@smerkous.com?subject=I have some freelance work&body=Hi David,">david@smerkous.com</a>
+                  <MdMail /> <a style={styles.tagText} href="mailto:david@smerkous.com?subject=I have some freelance work&body=Hi David,">david@smerkous.com</a>
                 </Item>
 
                 <Item style={cStyles.subtagline}>
-                    <MdPhoneAndroid /> <a style={styles.tagText} href="tel:8014251681">(801)-425-1681</a>
+                  <MdPhoneAndroid /> <a style={styles.tagText} href="tel:8014251681">(801)-425-1681</a>
                 </Item>
 
                 <Item style={cStyles.subtagline}>
-                    <FaGithub /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://github.com/smerkousdavid">Github</a>
+                  <FaGithub /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://github.com/smerkousdavid">Github</a>
                 </Item>
 
                 <Item style={cStyles.subtagline}>
-                    <FaLinkedinIn /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/david-smerkous">Linkedin</a>
+                  <FaLinkedinIn /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/david-smerkous">Linkedin</a>
                 </Item>
-            </SlideIn>);
+              </SlideIn>
+            </Desktop>
+            <Mobile>
+              <FadeIn style={cStyles.bigContainerMobile} pose={pose}>
+                <div style={cStyles.bigTextContainerMobile}>
+                  <TextFit
+                    mode="single"
+                    forceSingleModeWidth={true}
+                    style={cStyles.bigTextMobile}>
+                    Get In Touch
+                  </TextFit>
+                </div>
+
+                <div style={cStyles.borderMobile} />
+
+                <Item style={cStyles.taglineMobile}>
+                  <MdMail /> <a style={styles.tagText} href="mailto:david@smerkous.com?subject=I have some freelance work&body=Hi David,">david@smerkous.com</a>
+                </Item>
+
+                <Item style={cStyles.subtagline}>
+                  <MdPhoneAndroid /> <a style={styles.tagText} href="tel:8014251681">(801)-425-1681</a>
+                </Item>
+
+                <Item style={cStyles.subtagline}>
+                  <FaGithub /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://github.com/smerkousdavid">Github</a>
+                </Item>
+
+                <Item style={cStyles.subtagline}>
+                  <FaLinkedinIn /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/david-smerkous">Linkedin</a>
+                </Item>
+              </FadeIn>
+            </Mobile>
+          </div>
+);
 
         this.addSlide(1, (pose) =>
-            <SlideInRight pose={pose}>
+          <div>
+            <Desktop>
+              <SlideInRight pose={pose}>
                 <div style={styles.rightContainer}>
-                    <form id="contact" method="POST" action="https://formspree.io/david@smerkous.com">
-                        <p style={styles.formTitle}>Contact Form</p>
-                        <input type="text" name="name" placeholder="Your name" required />
-                        <input type="email" name="email" placeholder="Your email" required />
-                        <select name="reason" defaultValue="" required>
-                            <option value="" disabled hidden>Reason</option>
-                            <option value="freelance">Freelancing</option>
-                            <option value="bugs">Bug Reporting</option>
-                            <option value="recruiter">Recruiting</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <textarea name="message" placeholder="Your message" required></textarea>
-                        <button type="submit">Send</button>
-                    </form>
+                  {this.renderContactForm(false)}
                 </div>
-            </SlideInRight>);
+              </SlideInRight>
+            </Desktop>
+            <Mobile>
+              <FadeIn pose={pose}>
+                {this.renderContactForm(true)}
+              </FadeIn>
+            </Mobile>
+          </div>
+        );
     }
     
     componentWillReceiveProps(nextProps) {
@@ -120,12 +153,41 @@ class Content extends Page {
         this.slideOut(1);
     }
 
+    renderContactForm(mobile) {
+      return (
+        <form id="contact" className={mobile ? 'mobile' : 'desktop'} method="POST" action="https://formspree.io/david@smerkous.com">
+          <p style={styles.formTitle}>Contact Form</p>
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <select name="reason" defaultValue="" required>
+            <option value="" disabled hidden>Reason</option>
+            <option value="freelance">Freelancing</option>
+            <option value="bugs">Bug Reporting</option>
+            <option value="recruiter">Recruiting</option>
+            <option value="other">Other</option>
+          </select>
+          <textarea name="message" placeholder="Your message" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      );
+    }
+
     render() {
         return (
-            <div style={cStyles.container}>
-                {this.renderSlide()}
-                {this.renderSlide(1)}
-            </div>
+          <div>
+            <Desktop>
+              <div style={cStyles.container}>
+                  {this.renderSlide()}
+                  {this.renderSlide(1)}
+              </div>
+            </Desktop>
+            <Mobile>
+              <div style={cStyles.containerMobile}>
+                  {this.renderSlide()}
+                  {this.renderSlide(1)}
+              </div>
+            </Mobile>
+          </div>
         );
     }
 }

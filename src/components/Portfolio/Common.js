@@ -40,6 +40,11 @@ const SlideInRight = posed.div({
     out: { x: '50%', opacity: 0 }
 });
 
+const FadeIn = posed.div({
+    in: { opacity: 1 },
+    out: { opacity: 0 }
+});
+
 const FadeInTop = posed.div({
     in: { y: '0%', opacity: 1 },
     out: { y: '-100%', opacity: 0 }
@@ -68,7 +73,8 @@ class Page extends React.Component {
     slide(index, state, delay) {
         const call = () => {
             this.components[index] = this.slideComponents[index](state);
-            this.forceUpdate();
+            this.setState({});
+            // this.forceUpdate();
         };
 
         if (delay) window.setTimeout(call, delay);
@@ -98,85 +104,138 @@ class Page extends React.Component {
 
 const cStyles = {
     button: {
-        marginTop: 40,
-        marginLeft: 5
+      marginTop: 40,
+      marginLeft: 5
+    },
+    buttonMobile: {
+      marginTop: 20,
+      marginLeft: 0
     },
     container: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        margin: 0,
-        padding: 0,
-        width: '100%',
-        height: '100vh'
+      display: 'flex',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      margin: 0,
+      padding: 0
+    },
+    containerMobile: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: 0,
+      padding: 0,
+      width: '100vw'
     },
     rightContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        maxWidth: 400,
-        maxHeight: 800
+      display: 'flex',
+      flexDirection: 'column',
+      maxWidth: 400,
+      maxHeight: 800
     },
     border: {
-        display: 'block',
-        width: '10vw',
-        borderRadius: 8,
-        height: '5px',
-        marginTop: 50,
-        minWidth: 40,
-        backgroundColor: '#bd5858'
+      display: 'block',
+      width: '10vw',
+      borderRadius: 8,
+      height: '5px',
+      marginTop: 50,
+      minWidth: 40,
+      backgroundColor: '#bd5858'
+    },
+    borderMobile: {
+      display: 'block',
+      width: '25%',
+      borderRadius: 10,
+      height: '5px',
+      marginTop: 10,
+      backgroundColor: '#bd5858'
     },
     tagline: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        fontSize: '1.8em',
-        marginTop: 30
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      fontSize: '1.8em',
+      marginTop: 30
+    },
+    taglineMobile: {
+      fontSize: '1.1em',
+      marginTop: 20
     },
     subtagline: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        fontSize: '1.1em',
-        marginTop: 20
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      fontSize: '1.1em',
+      marginTop: 20
     },
     showcase: {
-        maxHeight: 800,
-        objectFit: 'cover',
-        backgroundColor: 'transparent'
+      maxHeight: 800,
+      objectFit: 'cover',
+      backgroundColor: 'transparent'
+    },
+    showcaseMobile: {
+      maxHeight: '40vh',
+      objectFit: 'fit',
+      marginTop: 30,
+      backgroundColor: 'transparent'
     },
     bigContainer: {
-        /* display: 'inline-block',
-        listStyle: 'none',
-        position: 'fixed',
-        marginLeft: '10%',
-        marginTop: '10em',
-        zIndex: 200 */
-        display: 'flex',
-        flexDirection: 'column',
-        paddingLeft: 0,
-        paddingBottom: '20%',
-        zIndex: 200,
-        listStyle: 'none'
+      /* display: 'inline-block',
+      listStyle: 'none',
+      position: 'fixed',
+      marginLeft: '10%',
+      marginTop: '10em',
+      zIndex: 200 */
+      display: 'flex',
+      flexDirection: 'column',
+      paddingLeft: 0,
+      paddingBottom: '20vw',
+      zIndex: 200,
+      listStyle: 'none'
+    },
+    bigContainerMobile: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignSelf: 'center',
+      width: '100vw',
+      marginTop: '20%',
+      zIndex: 200
     },
     bigTextContainer: {
-        display: 'inline-block',
-        marginLeft: 0,
-        width: '20vw',
-        height: '10vh',
-        minWidth: 400,
-        minHeight: 100
+      display: 'inline-block',
+      marginLeft: 0,
+      width: '20vw',
+      height: '10vh',
+      minWidth: 400,
+      minHeight: 100
+    },
+    bigTextContainerMobile: {
+      display: 'inline-block',
+      marginLeft: 0,
+      width: '80vw'
     },
     bigText: {
-        margin: 5,
-        padding: 0,
-        height: '100%',
-        width: '100%',
-        fontStyle: 'bold',
-        textShadow: '0 10px 30px rgba(2, 10, 4, 0.15)',
-        zIndex: 200
+      margin: 5,
+      padding: 0,
+      height: '100%',
+      width: '100%',
+      fontStyle: 'bold',
+      textShadow: '0 10px 30px rgba(2, 10, 4, 0.15)',
+      zIndex: 200
+    },
+    bigTextMobile: {
+      margin: 5,
+      padding: 0,
+      fontSize: '3em',
+      textAlign: 'center',
+      fontWeight: 600,
+      fontStyle: 'bold',
+      textShadow: '0 10px 30px rgba(2, 10, 4, 0.15)'
     }
 };
 
-export { SlideIn, SlideInRight, FadeInTop, Item, ItemBorder, Page, cStyles };
+export { SlideIn, SlideInRight, FadeIn, FadeInTop, Item, ItemBorder, Page, cStyles };

@@ -1,5 +1,6 @@
 $itemColor: $primary;
 $itemSelectedColor: #222222;
+$mobileWidth: 991px;
 
 // Burger menu
 .bm-burger-button {
@@ -82,7 +83,7 @@ $itemSelectedColor: #222222;
 //Contact Form
 #contact {
     margin: auto;
-    background-color: #F9F9F9;
+    background-color: rgba(249, 249, 249, 0.6);
     padding: 25px;
     margin: auto 0;
     display: flex;
@@ -97,7 +98,7 @@ $itemSelectedColor: #222222;
 #contact input, #contact textarea, #contact select {
     font-family: $fontFamily;
     border: 1px solid #cccccc;
-    background: #FBFBFBFB;
+    background: #FBFBFB88;
     align-self: stretch;
     margin: 5px 0;
     padding: 10px;
@@ -133,9 +134,21 @@ $itemSelectedColor: #222222;
     margin: 20px 20px 0 20px;
 }
 
+#contact.mobile {
+    transform: scale(0.8);
+}
+
 // Fullpage
 .fp-tooltip {
     color: $text !important;
+}
+
+// Fix the table-cell bug with mobile phones
+@media only screen and (max-width: $mobileWidth) {
+    .fp-tableCell {
+        display: block;
+        //height: 0 !important;
+    }
 }
 
 // Sticky Headers

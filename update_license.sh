@@ -26,6 +26,6 @@
 
 printf "Updating licenses"
 
-licenseheaders -t "mit" -y "2018" -o "David Smerkous" -n "David's portfolio" -u "https://smerkous.com" -f 1 -e node_modules/ -e .vscode/ -e build/ -e src/transcrypto/ -e .xml -e .json -e LICENSE
+licenseheaders -t "mit" -y "2018" -o "David Smerkous" -n "David's portfolio" -u "https://smerkous.com" -f 1 -e node_modules/ -e .vscode/ -e build/ -e src/transcrypto/ -e public/ -e config/ -e scripts/ -e .xml -e .json -e LICENSE
 
 echo "Done!"

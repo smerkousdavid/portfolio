@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2018 David Smerkous.
  * 
- * Project.js is part of David's portfolio 
+ * About.js is part of David's portfolio 
  * (see https://smerkous.com).
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,103 +25,98 @@
 import React from 'react';
 import Radium from 'radium';
 
+import { Desktop, Mobile } from 'media';
 import Colors from 'configs/Colors';
 
 class Content extends React.Component {
-    /* componentWillReceiveProps(nextProps) {
-        const { destination, direction, callback } = nextProps.state;
-        switch (callback) {
-        case "onLeave":
-            if(destination.index !== 1) {
-            }
-            break;
-        case "afterLoad":
-            if(destination.index === 1) {
-            }
-            break;
-        };
-    }*/
+  constructor(props) {
+    super(props);
 
-    render() {
-        return (
-            <div style={styles.container}>
-                <div style={styles.center}>
-                    <p style={styles.bigText}>About Me</p>
-                    <p style={styles.content}>
-                        I am currently a freshman student at the University of Washington perusing a degree in Computer Science. 
-                        Most of my work has been private consulting and freelancing for individual projects. However, throughout 
-                        high school I got the chance to work with closely with the administration of nearby schools to create 
-                        software solutions for both students and teachers, including plagiarism checkers and a distributed block lunch apps. 
-                        Other R&D projects include RFID student trackers and a safety card system for metal shop students. 
-                        Later on I moved onto more complicated solutions such as REM sleep cycle tracking, remote text to speech 
-                        engines - I developed this framework while I interned at cloudyBoss, - and anonymous distributed peer to peer 
-                        networks. I love working with others on projects and when I set my mind to something I will devote all of my time 
-                        to get that thing done.</p>
-                </div>
-            </div>
-        );
-    }
+    this.aboutText = `
+        I am currently a freshman student at the University of Washington perusing a degree in Computer Science. 
+        Most of my work has been private consulting and freelancing for individual projects. However, throughout 
+        high school I got the chance to work with closely with the administration of nearby schools to create 
+        software solutions for both students and teachers, including plagiarism checkers and a distributed block lunch apps. 
+        Other R&D projects include RFID student trackers and a safety card system for metal shop students. 
+        Later on I moved onto more complicated solutions such as REM sleep cycle tracking, remote text to speech 
+        engines - I developed this framework while I interned at cloudyBoss, - and anonymous distributed peer to peer 
+        networks. I love working with others on projects and when I set my mind to something I will devote all of my time 
+        to get that thing done.
+    `;
+  }
+
+  render() {
+    return (
+      <div style={styles.container}>
+        <Desktop>
+          <div style={styles.center}>
+            <p style={styles.bigText}>About Me</p>
+            <p style={styles.content}>{this.aboutText}</p>
+          </div>
+        </Desktop>
+        <Mobile>
+          <div style={styles.centerMobile}>
+            <p style={styles.bigTextMobile}>About Me</p>
+            <p style={styles.content}>{this.aboutText}</p>
+          </div>
+        </Mobile>
+      </div>
+    );
+  }
 }
 
 const styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        alignContent: 'stretch',
-        width: '100vw',
-        height: '100vh'
-    },
-    header: {
-        display: 'flex',
-        paddingTop: '10vh',
-        backgroundColor: '#222222',
-        color: '#fff',
-        fontSize: '2em',
-        alignContent: 'stretch'
-    },
-    headerText: {
-        textAlign: 'center',
-        width: '100vw',
-        backgroundColor: '#111111',
-        margin: 0,
-        padding: 20
-    },
-    background: {
-        width: '100vw',
-        height: '35vh',
-        objectFit: 'cover',
-        filter: 'grayscale(100%)',
-        transform: 'scale(1.05)'
-    },
-    center: {
-        position: 'absolute',
-        display: 'flex',
-        placeSelf: 'center',
-        placeContent: 'center',
-        flexDirection: 'column',
-        border: `2px solid ${Colors.text}`,
-        borderRadius: 25,
-        padding: 25,
-        maxWidth: '60vw',
-        zIndex: 100
-    },
-    bigText: {
-        fontSize: '5em',
-        fontWeight: 600,
-        textAlign: 'center',
-        margin: 20
-    },
-    content: {
-        fontSize: '1.05em',
-        paddingLeft: 10,
-        paddingRight: 10,
-        textOverflow: 'clip',
-        textDecoration: 'none',
-        textAlign: 'justify',
-        textIndent: 35
-    }
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    alignContent: 'stretch'
+  },
+  center: {
+    position: 'absolute',
+    display: 'flex',
+    placeSelf: 'center',
+    placeContent: 'center',
+    flexDirection: 'column',
+    border: `2px solid ${Colors.text}`,
+    borderRadius: 25,
+    padding: 25,
+    maxWidth: '60vw',
+    zIndex: 100
+  },
+  centerMobile: {
+    position: 'absolute',
+    display: 'flex',
+    placeSelf: 'center',
+    placeContent: 'center',
+    flexDirection: 'column',
+    width: '90vw',
+    height: '80vh',
+    overflowY: 'none',
+    zIndex: 100
+  },
+  bigText: {
+    fontSize: '5em',
+    fontWeight: 600,
+    textAlign: 'center',
+    margin: 20
+  },
+  bigTextMobile: {
+    fontSize: '3em',
+    fontWeight: 600,
+    textAlign: 'center',
+    margin: 0
+  },
+  content: {
+    fontSize: '1.05em',
+    paddingLeft: 10,
+    paddingRight: 10,
+    textOverflow: 'clip',
+    textDecoration: 'none',
+    textAlign: 'justify',
+    textIndent: 35
+  }
 };
 
 export default Radium(Content);

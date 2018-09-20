@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2018 David Smerkous.
  * 
- * Header.js is part of David's portfolio 
+ * Controls.js is part of David's portfolio 
  * (see https://smerkous.com).
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy

@@ -28,7 +28,8 @@ import Radium from 'radium';
 
 import TextFit from 'react-textfit';
 
-import { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles } from '../Common';
+import { Desktop, Mobile, deviceSelect } from 'media';
+import { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles, FadeIn } from '../Common';
 
 class Content extends Page {
     constructor(props) {
@@ -36,38 +37,76 @@ class Content extends Page {
 
         this.initSlides();
         this.addSlide(0, (pose) =>
-            <SlideIn style={cStyles.bigContainer} pose={pose}>
+          <div>
+            <Desktop>
+              <SlideIn style={cStyles.bigContainer} pose={pose}>
                 <Item>
-                    <div style={cStyles.bigTextContainer}>
-                        <TextFit
-                            mode="single"
-                            forceSingleModeWidth={false}
-                            style={cStyles.bigText}>
-                            Projects
-                        </TextFit>
-                    </div>
+                  <div style={cStyles.bigTextContainer}>
+                    <TextFit
+                      mode="single"
+                      forceSingleModeWidth={false}
+                      style={cStyles.bigText}>
+                      Projects
+                    </TextFit>
+                  </div>
                 </Item>
 
                 <ItemBorder style={cStyles.border} />
 
                 <Item style={cStyles.tagline}>
-                    Stuff that I am working on
+                  Stuff that I am working on
                 </Item>
 
                 <Item>
-                    <button style={cStyles.button} onClick={() => this.props.api.moveTo('project', 1)}>Explore</button>
+                  <button style={cStyles.button} onClick={() => this.props.api.moveTo('project', 1)}>Explore</button>
                 </Item>
-            </SlideIn>
+              </SlideIn>
+            </Desktop>
+            <Mobile>
+              <FadeIn style={cStyles.bigContainerMobile} pose={pose}>
+                <div style={cStyles.bigTextContainerMobile}>
+                  <TextFit
+                    mode="single"
+                    forceSingleModeWidth={true}
+                    style={cStyles.bigTextMobile}>
+                    Projects
+                  </TextFit>
+                </div>
+                <div style={cStyles.borderMobile} />
+                <div style={cStyles.taglineMobile}>
+                  Stuff that I am working on
+                </div>
+                <button style={cStyles.button} onClick={() => this.props.api.moveTo('project', 1)}>Explore</button>
+              </FadeIn>
+            </Mobile>
+          </div>
         );
 
         this.addSlide(1, (pose) =>
-            <SlideInRight pose={pose}>
+          <div>
+            <Desktop>
+              <SlideInRight pose={pose}>
                 <div style={cStyles.rightContainer}>
-                    <img style={cStyles.showcase} src={require('imgs/phone.png')} alt="projects" />
+                  <img style={cStyles.showcase} src={require('imgs/phone.png')} alt="projects" />
                 </div>
-            </SlideInRight>
+              </SlideInRight>
+            </Desktop>
+            <Mobile>
+              <img style={cStyles.showcaseMobile} src={require('imgs/phone.png')} alt="projects" />
+            </Mobile>
+          </div>
         );
     }
+
+    /*
+            <Mobile>
+              <FadeIn pose={pose}>
+                <div style={cStyles.bottomContainerMobile}>
+                  <img style={cStyles.showcaseMobile} src={require('imgs/phone.png')} alt="projects" />
+                </div>
+              </FadeIn>
+            </Mobile>
+     */
 
     componentWillReceiveProps(nextProps) {
         const { destination, callback } = nextProps.state;
@@ -95,12 +134,14 @@ class Content extends Page {
     }
 
     render() {
-        return (
-            <div style={cStyles.container}>
-                {this.renderSlide()}
-                {this.renderSlide(1)}
+      return (
+          <div>
+            <div style={deviceSelect({ desktop: cStyles.container, mobile: cStyles.containerMobile })}>
+              {this.renderSlide()}
+              {this.renderSlide(1)}
             </div>
-        );
+          </div>
+      );
     }
 }
 

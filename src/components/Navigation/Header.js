@@ -26,11 +26,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 
+import { Desktop } from 'media';
+
 class Header extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        <a style={styles.nameTitle} onClick={this.props.onHome}>David Smerkous</a>
+        <Desktop>
+          <a style={styles.nameTitle} onClick={this.props.onHome}>David Smerkous</a>
+        </Desktop>
       </div>
     );
   }

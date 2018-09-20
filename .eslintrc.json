@@ -83,7 +83,6 @@
         "lines-around-directive": "error",
         "lines-between-class-members": "error",
         "max-depth": "error",
-        "max-lines": "error",
         "max-nested-callbacks": "error",
         "new-parens": "error",
         "newline-after-var": "error",
