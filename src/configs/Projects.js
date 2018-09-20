@@ -43,6 +43,20 @@ const projects = [
         image: 'pseudonymous.svg',
         desc: 'At home sleep study solution that collects data and applies it your bedroom',
         explore: 'https://github.com/Pseudonymous-coders/Slumber'
+    },
+    {
+        name: 'Rem-Sphinx',
+        role: 'Software Developer Intern',
+        image: 'cloudyboss.png',
+        desc: 'A multi-client python server solution that reports as a standard CMU Sphinx STT Engine',
+        explore: 'https://github.com/smerkousdavid/rem-sphinx'
+    },
+    {
+        name: 'Mlcar',
+        role: 'Software Developer',
+        image: 'mlcar.jpg',
+        desc: 'A fully autonymous self-driving RC car equipped with a genetic neural network',
+        explore: 'https://github.com/smerkousdavid/mlcar'
     }
 ];
 
