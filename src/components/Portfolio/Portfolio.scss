@@ -145,7 +145,7 @@ $mobileWidth: 700px;
 // Fix the table-cell bug with mobile phones
 @media only screen and (max-width: $mobileWidth) {
     .fp-tableCell {
-        display: block;
+        display: block !important;
         //height: 0 !important;
     }
 }
