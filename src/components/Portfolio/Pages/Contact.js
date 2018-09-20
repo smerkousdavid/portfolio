@@ -90,21 +90,21 @@ class Content extends Page {
 
                 <div style={cStyles.borderMobile} />
 
-                <Item style={cStyles.taglineMobile}>
+                <div style={cStyles.taglineMobile}>
                   <MdMail /> <a style={styles.tagText} href="mailto:david@smerkous.com?subject=I have some freelance work&body=Hi David,">david@smerkous.com</a>
-                </Item>
+                </div>
 
-                <Item style={cStyles.subtagline}>
+                <div style={cStyles.subtagline}>
                   <MdPhoneAndroid /> <a style={styles.tagText} href="tel:8014251681">(801)-425-1681</a>
-                </Item>
+                </div>
 
-                <Item style={cStyles.subtagline}>
+                <div style={cStyles.subtagline}>
                   <FaGithub /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://github.com/smerkousdavid">Github</a>
-                </Item>
+                </div>
 
-                <Item style={cStyles.subtagline}>
+                <div style={cStyles.subtagline}>
                   <FaLinkedinIn /> <a style={styles.tagText} target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/david-smerkous">Linkedin</a>
-                </Item>
+                </div>
               </FadeIn>
             </Mobile>
           </div>
@@ -199,8 +199,7 @@ const styles = {
         margin: 0
     },
     tagText: {
-        margin: 0,
-        marginLeft: 10
+        margin: '0 0 0 10px'
     },
     formTitle: {
         fontSize: '1.5em',

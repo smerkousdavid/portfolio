@@ -74,7 +74,6 @@ class Page extends React.Component {
         const call = () => {
             this.components[index] = this.slideComponents[index](state);
             this.setState({});
-            // this.forceUpdate();
         };
 
         if (delay) window.setTimeout(call, delay);
@@ -182,12 +181,6 @@ const cStyles = {
       backgroundColor: 'transparent'
     },
     bigContainer: {
-      /* display: 'inline-block',
-      listStyle: 'none',
-      position: 'fixed',
-      marginLeft: '10%',
-      marginTop: '10em',
-      zIndex: 200 */
       display: 'flex',
       flexDirection: 'column',
       paddingLeft: 0,

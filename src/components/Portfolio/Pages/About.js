@@ -34,30 +34,34 @@ class Content extends React.Component {
 
     this.aboutText = `
         I am currently a freshman student at the University of Washington perusing a degree in Computer Science. 
-        Most of my work has been private consulting and freelancing for individual projects. However, throughout 
-        high school I got the chance to work with closely with the administration of nearby schools to create 
-        software solutions for both students and teachers, including plagiarism checkers and a distributed block lunch apps. 
-        Other R&D projects include RFID student trackers and a safety card system for metal shop students. 
-        Later on I moved onto more complicated solutions such as REM sleep cycle tracking, remote text to speech 
-        engines - I developed this framework while I interned at cloudyBoss, - and anonymous distributed peer to peer 
-        networks. I love working with others on projects and when I set my mind to something I will devote all of my time 
-        to get that thing done.
+        Most of my work is done through private consulting and freelancing. However, while I was in 
+        high school I got the chance to work directly with the administration of nearby schools to create 
+        software solutions for both students and teachers. Examples include plagiarism checkers and distributed block-lunch apps.
+        Some R&D projects include RFID student trackers and a safety card system for the school's metal shop. 
+        After gaining some developer experience, I moved onto more complicated solutions such as REM sleep cycle tracking, 
+        remote text to speech engines - I developed this framework while I interned at cloudyBoss, - and anonymous distributed 
+        peer to peer networks. My projecs usually involve a few other developers in the mix and when I set my mind to something I 
+        will devote all of my time to get that thing done with the right people.
     `;
   }
 
   render() {
     return (
-      <div style={styles.container}>
+      <div>
         <Desktop>
-          <div style={styles.center}>
-            <p style={styles.bigText}>About Me</p>
-            <p style={styles.content}>{this.aboutText}</p>
+          <div style={styles.container}>
+            <div style={styles.center}>
+              <p style={styles.bigText}>About Me</p>
+              <p style={styles.content}>{this.aboutText}</p>
+            </div>
           </div>
         </Desktop>
         <Mobile>
-          <div style={styles.centerMobile}>
-            <p style={styles.bigTextMobile}>About Me</p>
-            <p style={styles.content}>{this.aboutText}</p>
+          <div style={styles.containerMobile}>
+            <div style={styles.centerMobile}>
+              <p style={styles.bigTextMobile}>About Me</p>
+              <p style={styles.contentMobile}>{this.aboutText}</p>
+            </div>
           </div>
         </Mobile>
       </div>
@@ -72,6 +76,14 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'stretch',
     alignContent: 'stretch'
+  },
+  containerMobile: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    alignContent: 'stretch',
+    height: '150vh'
   },
   center: {
     position: 'absolute',
@@ -91,9 +103,6 @@ const styles = {
     placeSelf: 'center',
     placeContent: 'center',
     flexDirection: 'column',
-    width: '90vw',
-    height: '80vh',
-    overflowY: 'none',
     zIndex: 100
   },
   bigText: {
@@ -115,6 +124,14 @@ const styles = {
     textOverflow: 'clip',
     textDecoration: 'none',
     textAlign: 'justify',
+    textIndent: 35
+  },
+  contentMobile: {
+    fontSize: '1.2em',
+    padding: 20,
+    textOverflow: 'clip',
+    textDecoration: 'none',
+    textAlign: 'center',
     textIndent: 35
   }
 };

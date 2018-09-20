@@ -25,7 +25,7 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-const desktopWidth = 992;
+const desktopWidth = 700;
 
 const Desktop = props => <MediaQuery {...props} minWidth={desktopWidth} />;
 const Mobile = props => <MediaQuery {...props} maxWidth={desktopWidth - 1} />;
@@ -40,10 +40,15 @@ const deviceSelect = devices => {
         return devices.mobile;
     } catch (err) {
         console.log('failed to load for device set', devices); // eslint-disable-line
+        
+        return null;
     }
 };
 const deviceRun = devices => {
-    deviceSelect(devices)();
+    const selected = deviceSelect(devices);
+
+    // Run only on a valid object
+    if (selected) selected();
 };
 
 

@@ -23,13 +23,15 @@
  * SOFTWARE.
  */
  /* global require */
- import React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Radium from 'radium';
 
 import TextFit from 'react-textfit';
 
 import { Desktop, Mobile, deviceSelect } from 'media';
 import { SlideIn, SlideInRight, Item, ItemBorder, Page, cStyles, FadeIn } from '../Common';
+import { deviceRun } from 'configs/Media';
 
 class Content extends Page {
     constructor(props) {
@@ -92,40 +94,43 @@ class Content extends Page {
               </SlideInRight>
             </Desktop>
             <Mobile>
-              <img style={cStyles.showcaseMobile} src={require('imgs/phone.png')} alt="projects" />
+              <FadeIn pose={pose}>
+                <img style={cStyles.showcaseMobile} src={require('imgs/phone.png')} alt="projects" />
+              </FadeIn>
             </Mobile>
           </div>
         );
     }
 
-    /*
-            <Mobile>
-              <FadeIn pose={pose}>
-                <div style={cStyles.bottomContainerMobile}>
-                  <img style={cStyles.showcaseMobile} src={require('imgs/phone.png')} alt="projects" />
-                </div>
-              </FadeIn>
-            </Mobile>
-     */
-
     componentWillReceiveProps(nextProps) {
-        const { destination, callback } = nextProps.state;
-        
-        switch (callback) {
-        case 'onLeave':
-            if (destination.index !== 1) {
-                this.slideOut();
-            }
-            break;
-        case 'afterLoad':
-            if (destination.index === 1) {
-                this.slideIn();
-                this.slideIn(1);
-            }
-            break;
-        default:
-            break;
+      const { origin, destination, callback } = nextProps.state;
+
+      switch (callback) {
+      case 'onLeave':
+        if (destination.index !== 1) {
+          this.slideOut();
         }
+        break;
+      case 'afterLoad':
+        if (destination.index === 1) {
+          // @TODO fix this horrible viewport shift hack (avoidance by reloading the project's section without shifting the view :/)
+          deviceRun({
+            mobile: () => {
+              if ((origin || {}).index === 2) {
+                setTimeout(() => {
+                  location.reload(true);
+                }, 100);
+              }
+            }
+          });
+
+          this.slideIn();
+          this.slideIn(1);
+        }
+        break;
+      default:
+        break;
+      }
     }
 
     componentDidMount() {
@@ -144,5 +149,9 @@ class Content extends Page {
       );
     }
 }
+
+Content.propTypes = {
+  api: PropTypes.any
+};
 
 export default Radium(Content);
