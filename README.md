@@ -7,4 +7,4 @@ The main frameworks used are Hugo + React. I use Hugo for the static page genera
 ## Screenshot
 This is what the site looks like with the react landing page of the solar system.
 
-![Webpage](https://raw.githubusercontent.com/smerkousdavid/portfolio/master/static/images/screenshot.png)
+![Webpage](https://github.com/smerkousdavid/portfolio/blob/main/static/images/screenshot.png?raw=true)
