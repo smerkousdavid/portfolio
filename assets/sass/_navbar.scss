@@ -1,19 +1,38 @@
 // Navbar
 .navbar {
     height: auto;
-    max-width: calc(#{$wide-size} - (#{$spacing-full} * 2));
-    max-width: -webkit-calc(#{$wide-size} - (#{$spacing-full} * 2));
-    position: relative;
+    // max-width: calc(#{$wide-size} - (#{$spacing-full} * 2));
+    // max-width: -webkit-calc(#{$wide-size} - (#{$spacing-full} * 2));
+    // position: relative;
+    position: fixed;
+    background-color: $header-color;
+    z-index: 2;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
     border-bottom: 1px solid $light;
     padding: .5rem .3rem;
     @extend %clearfix;
   }
+
+  .navbar-home {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+
+  .menu-home {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+
   .logo {
-    float: left;
-    margin: .5rem 0 0 1rem;
+    // float: left;
+    display: inline-flex;
+    margin: 0.2rem;
+    margin-left: 1rem;
+    color: $dark-black;
     > svg {
+      fill: $dark-black;
       opacity: 0.7;
     }
     &:hover {
@@ -31,6 +50,12 @@
     user-select: none;
     -ms-user-select: none;
     -webkit-user-select: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
 
     ul {
       margin: 0;
@@ -48,7 +73,9 @@
       -webkit-transform: scale(1, 1);
       transform: scale(1, 1);
       opacity: 0.7;
-      z-index: 1;
+      z-index: 2;
+      margin: 0;
+      margin-right: 1rem;
 
       &:hover {
         cursor: pointer;
@@ -142,7 +169,7 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
       height: 50px;
       background-color: $white;
@@ -157,7 +184,9 @@
         display: block;
         position: absolute;
         right: 0;
-        margin: .7rem .3rem 0 0;
+        // margin: .7rem .3rem 0 0;
+        margin: -1rem .3rem 0 0;
+
         cursor: pointer;
         text-align: center;
         z-index: 1;

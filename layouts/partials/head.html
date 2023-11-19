@@ -12,8 +12,13 @@
 
     {{- /* Styles */ -}}
 
-    {{- $style := resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS (dict "targetPath" "style.css") | minify | fingerprint }}
-    <link href="{{ $style.RelPermalink }}" rel="stylesheet">
+    {{ if .IsHome }}
+        {{- $style := resources.Get "sass/home.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS (dict "targetPath" "style.css") | minify | fingerprint }}
+        <link href="{{ $style.RelPermalink }}" rel="stylesheet">
+    {{ else }}
+        {{- $style := resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "style.scss" . | toCSS (dict "targetPath" "style.css") | minify | fingerprint }}
+        <link href="{{ $style.RelPermalink }}" rel="stylesheet">
+    {{ end }}
     {{- $code_syntax_highlight_css := resources.Get "code-highlight.css" | minify | fingerprint }}
     <link href="{{ $code_syntax_highlight_css.RelPermalink }}" rel="stylesheet">
 
@@ -41,4 +46,9 @@
     {{ template "_internal/google_analytics.html" . }}
     {{- end -}}
 
+    {{- if and .IsPage .Params.jsFiles -}}
+    {{- range .Params.jsFiles -}}
+        <script src="{{ . }}"></script>
+    {{- end -}}
+    {{- end -}}
 </head>

@@ -14,6 +14,17 @@
     {{ end }}
 {{ end }}
 
+{{- $jsFileName := .Title | anchorize -}}
+{{- $pathWithoutExtension := (printf "%s%s" "scripts/" $jsFileName)  -}}
+{{- $pathJS := (printf "%s%s" $pathWithoutExtension ".js" ) -}}
+{{- $pathJSX := (printf "%s%s" $pathWithoutExtension ".jsx" ) -}}
+{{- if (fileExists (printf "%s%s" "assets/" $pathJS)) -}}
+<script src="{{ $pathJS | absURL }}"></script>
+{{- else if (fileExists (printf "%s%s" "assets/" $pathJSX)) -}}
+{{- $app := resources.Get $pathJSX | babel  -}}
+<script src="{{ $app.RelPermalink | absURL }}"></script>
+{{- end -}}
+
 {{ if hugo.IsProduction }}
     {{ $main = $main | resources.Concat "js/main.js" | resources.Minify | resources.Fingerprint }}
     <script src="{{  $main.Permalink }}" integrity="{{ $main.Data.Integrity }}"></script>

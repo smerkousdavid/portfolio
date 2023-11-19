@@ -1,0 +1,68 @@
+baseURL = 'https://smerkous.com/'
+languageCode = 'en-us'
+title = 'Davids Website'
+
+
+[menu]
+  [[menu.main]]
+    # The page reference (pageRef) is useful for menu highlighting
+    # When pageRef is set, setting `url` is optional; it will be used as a fallback if the page is not found.
+    pageRef="/"
+    name = 'Home'
+    url = '/'
+    weight = 10
+  [[menu.main]]
+    pageRef="posts"
+    name = 'Posts'
+    url = '/posts/'
+    weight = 20
+  [[menu.main]]
+    pageRef="about"
+    name = 'About'
+    url = '/about/'
+    weight = 30
+  [[menu.main]]
+    pageRef="contact"
+    name = 'Contact'
+    url = '/contact/'
+    weight = 30
+
+[params.webmanifest]
+  name = "smerkous" # will use "params.sitename" or "title" by default
+  short_name = "smerkous" # same as name
+  start_url = "/" # will use homepage url by default
+  theme_color = "#434648" # default is "#434648" (base color of text). Also will override html `<meta name="theme-color" />`
+  background_color = "#fff" # by default depend on "params.defaultColor" for "light" or "auto" will be set to "#fff" for dark will be "#131418" (color of dark mode background)
+  display = "standalone"
+
+# Allow to override `browserconfig.xml` params (configuration for windows embeded browsers)
+[params.browserconfig]
+  TileColor = "#2d89ef" # default windows 10 blue tile color
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/smerkousdavid"
+
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/david-smerkous/"
+
+[[params.socialIcons]]
+name = "hackster"
+url = "https://www.hackster.io/smerkousdavid"
+
+[[params.socialIcons]]
+name = "flickr"
+url = "https://www.flickr.com/photos/187731729@N06/"
+
+[[params.socialIcons]]
+name = "twitter"
+url = "https://twitter.com/DSmerkous"
+
+[security.exec]
+  allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^babel$']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

@@ -1,0 +1,89 @@
+@import "mainbase";
+@import "fonts";
+// Reset some basic elements
+* {
+  -webkit-transition: background-color 75ms ease-in, border-color 75ms ease-in;
+  -moz-transition: background-color 75ms ease-in, border-color 75ms ease-in;
+  -ms-transition: background-color 75ms ease-in, border-color 75ms ease-in;
+  -o-transition: background-color 75ms ease-in, border-color 75ms ease-in;
+  transition: background-color 75ms ease-in, border-color 75ms ease-in;
+}
+
+.notransition {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+hr,
+dl,
+dd,
+ol,
+ul,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+// Basic styling
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  color: $text-base-color;
+  background-color: $white;
+  font: $normal-weight #{$base-font-size}/#{$base-line-height} $sans-family;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-font-feature-settings: "kern" 1;
+  -moz-font-feature-settings: "kern" 1;
+  -o-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  box-sizing: border-box;
+}
+
+
+// Clearfix
+%clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+// @FIX ME later this is a hack to fix background text
+.link-button:hover {
+  color: black !important;
+}
+
+@import "navbar";
+@import "layout";
+@import "post";
+@import "code";
+
+@import "tableOfContent";
+@import "miscellaneous";
+@import "dark";
+@import "listpage";
+@import "custom";
+
+html body {
+  background-color: black !important;
+}

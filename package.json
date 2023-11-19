@@ -1,0 +1,15 @@
+{
+  "name": "david-site",
+  "version": "1.0.0",
+  "description": "David's Personal Website",
+  "main": "index.js",
+  "repository": "git@github.com:hugo-sid/hugo-blog-awesome.git",
+  "author": "smerkousdavid <smerkousdavid@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.3",
+    "@babel/preset-react": "^7.23.3"
+  }
+}

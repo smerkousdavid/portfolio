@@ -34,6 +34,13 @@
     };
 
     const initTheme = (state) => {
+        // force dark on home page
+        // @FIX ME hack
+        const path = window.location.pathname;
+        if (path.includes('/index.html') || path === '/') {
+            state = THEMES.DARK;
+        }
+
         if (state === THEMES.DARK) {
             document.documentElement.classList.add(THEMES.DARK);
             document.documentElement.classList.remove(THEMES.LIGHT);
@@ -60,6 +67,13 @@
     window.addEventListener("DOMContentLoaded", () => {
         // Theme switch
         const lamp = document.getElementById("mode");
+
+        // force dark on home page
+        // @FIX ME hack
+        const path = window.location.pathname;
+        if (path.includes('/index.html') || path === '/') {
+            return;
+        }
 
         lamp.addEventListener("click", () => toggleTheme());
 

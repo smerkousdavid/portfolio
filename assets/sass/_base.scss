@@ -58,6 +58,7 @@ body {
   box-sizing: border-box;
 }
 
+
 // Set `margin-bottom` to maintain vertical rhythm
 h1,
 h2,
@@ -228,6 +229,11 @@ blockquote {
   }
 }
 
+// @FIX ME later this is a hack to fix background text
+.link-button:hover {
+  color: #131418 !important;
+}
+
 // Wrapper
 .wrapper {
   max-width: -webkit-calc(#{$narrow-size} - (#{$spacing-full} * 2));
@@ -321,4 +327,22 @@ mark,
       border: 0;
     }
   }
+}
+
+button[type=submit] {
+  padding: 10px 20px;
+  color: $black;
+  font-size: 1.1em;
+  font-weight: 500;
+  background-color: transparent;
+  border: 2px solid $black;
+  border-radius: 50px;
+  transition: color .2s ease-in-out, background-color .2s ease-in-out;
+  cursor: pointer;
+}
+
+button[type=submit]:hover {
+  color: $light;
+  background-color: $black;
+  opacity: 1.0;
 }
